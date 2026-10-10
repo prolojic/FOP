@@ -1,0 +1,12 @@
+{
+  "central": "SharedParameters.txt",
+  "outputDir": "fops",
+  "standalone": [ "FOP_HospitalTechnic.txt" ],
+  "fops": {
+    "FOP_ADSK.txt": [ { "namePrefix": "ADSK_" } ],
+    "FOP_Image.txt": [ { "groupExact": "01 Обязательные ОБЩИЕ" } ],
+    "FOP_StandartProekt.txt": [ { "groupExact": "01 Обязательные ОБЩИЕ" } ],
+    "FOP_Upside.txt": [ { "groupExact": "01 Обязательные ОБЩИЕ" } ],
+    "FOP_Expertiza.txt": [ { "groupPrefix": "!! Экспертиза" } ]
+  }
+}
