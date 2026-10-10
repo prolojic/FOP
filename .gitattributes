@@ -1,0 +1,4 @@
+# Чтобы Git показывал diff для UTF-16 файлов и корректно нормализовал окончания строк
+*.txt text working-tree-encoding=UTF-16 eol=crlf
+*.yaml text eol=crlf
+*.py text eol=crlf

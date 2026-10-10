@@ -1,0 +1,24 @@
+# This is a Revit shared parameter file.
+# Do not edit manually.
+*META	VERSION	MINVERSION
+META	2	1
+*GROUP	ID	NAME
+GROUP	1	01 Обязательные ОБЩИЕ
+*PARAM	GUID	NAME	DATATYPE	DATACATEGORY	GROUP	VISIBLE	DESCRIPTION	USERMODIFIABLE	HIDEWHENNOVALUE
+PARAM	ffb9ab28-a158-4c92-822a-690b5adbf1ec	HT_Номер секции	TEXT		1	1	Номер секции	1	0
+PARAM	6a0ac751-b458-40b1-aa2b-1c03f872af02	HT_Материал	TEXT		1	1	Материал элемента модели 	1	0
+PARAM	4c59e371-0935-4576-9e48-0518b5be7dc3	HT_Позиция	TEXT		1	1		1	0
+PARAM	aff40874-2beb-4b32-abef-a8f14585a874	HT_Толщина	LENGTH		1	1		1	0
+PARAM	68b5327b-26cf-4d19-88fc-57cfb7c4ec1c	HT_Высота	LENGTH		1	1	Габаритные размеры элемента модели 	1	0
+PARAM	428bd588-df32-4dac-b94c-288c430cee05	HT_Периметр	LENGTH		1	1		1	0
+PARAM	852f53b0-3327-4cd7-8603-84942169c0fa	HT_Масса	NUMBER		1	1		1	0
+PARAM	a23b2ab4-31e4-484f-966e-fda22350dfe1	HT_Подземная часть	TEXT		1	1	Для элементов ниже отметки +0,000 указать значение «Да» &#xD&#xA(текстом), для элементов выше +0,000 – «Нет» (текстом)  	1	0
+PARAM	cff626bc-3ab3-48d8-b162-a6e3bdee268e	Код по классификатору	TEXT		1	1	Код по классификатору, подробнее в разделе 3.3.2	1	0
+PARAM	1d4c81bf-d6f7-4a33-ae65-ff9ad797eb78	HT_Этаж	TEXT		1	1	Номер этажа	1	0
+PARAM	dfaeaccb-d634-4f61-bcfb-4e3f5cbf65b3	HT_Диаметр	LENGTH		1	1	Габаритные размеры элемента модели	1	0
+PARAM	17fac6cc-1e90-48b5-b1f0-5962a947dcd8	HT_Объем	VOLUME		1	1	Объем элемента модели	1	0
+PARAM	e88518ce-c03f-46bc-873e-a99888fd379d	HT_Площадь	AREA		1	1	Площадь элемента модели	1	0
+PARAM	1a52fcd0-66b9-4fd4-9e8b-a0a2d6fb07ec	Описание по классификатору	TEXT		1	1	&#xD&#xAПараметр заполняется автоматически после присваивания &#xD&#xAэлементу кода по классификатору, если используется си&#xD&#xAстемный параметр 	1	0
+PARAM	1023cbe3-44be-4461-845f-e4c89ce7d580	HT_Ширина	LENGTH		1	1	Габаритные размеры элемента модели 	1	0
+PARAM	fd57c7e6-6c4d-4df0-a965-d88813c7a505	HT_Номер корпуса	TEXT		1	1	Номер здания/корпуса 	1	0
+PARAM	7f3621ee-01dd-40a9-8588-eb5daabe3326	HT_Длина	LENGTH		1	1	Габаритные размеры элемента модели	1	0

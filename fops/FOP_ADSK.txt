@@ -1,0 +1,11 @@
+# This is a Revit shared parameter file.
+# Do not edit manually.
+*META	VERSION	MINVERSION
+META	2	1
+*GROUP	ID	NAME
+GROUP	1	04_HT_Отверстия
+*PARAM	GUID	NAME	DATATYPE	DATACATEGORY	GROUP	VISIBLE	DESCRIPTION	USERMODIFIABLE	HIDEWHENNOVALUE
+PARAM	096bc30e-3c95-4637-84d5-9f6bf45d8676	ADSK_Отверстие_Ширина	LENGTH		1	1	Ширна проема отверстия	1	0
+PARAM	d1f527c4-8806-4e6f-8368-bc581b3e730d	ADSK_Отверстие_Функция	TEXT		1	1	Функциональное назначение отверстия	1	0
+PARAM	bc4e92d8-db66-4e93-8923-3af6e2dc8599	ADSK_Отверстие_Высота	LENGTH		1	1	Высота отверстия	1	0
+PARAM	6ec2f9e9-3d50-4d75-a453-26ef4e6d1625	ADSK_Отверстие_Отметка от нуля	LENGTH		1	1	Отметка отверстия от нуля (проектная)	1	0
