@@ -7,7 +7,7 @@ using System.Text;
 namespace FopTools;
 
 /// <summary>
-/// Парсер и сериализатор файла общих параметров Revit (SharedParameters.txt).
+/// Парсер и сериализатор файла общих параметров Revit (центральный ФОП — FOP_SP_v1.txt).
 /// Формат: UTF-16 LE с BOM, строки через CRLF.
 /// </summary>
 public sealed class FopFile

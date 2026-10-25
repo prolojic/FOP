@@ -1,5 +1,5 @@
 {
-  "central": "SharedParameters.txt",
+  "central": "FOP_SP_v1.txt",
   "outputDir": "fops",
   "standalone": [ "FOP_HospitalTechnic.txt" ],
   "fops": {

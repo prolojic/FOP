@@ -16,7 +16,7 @@ public static class CheckCommand
     {
         var rulesPath = Path.Combine(repoRoot, "fop_rules.json");
         var rules = File.Exists(rulesPath) ? FopRules.Load(rulesPath) : null;
-        var centralPath = Path.Combine(repoRoot, rules?.Central ?? "SharedParameters.txt");
+        var centralPath = Path.Combine(repoRoot, rules?.Central ?? "FOP_SP_v1.txt");
         var central = FopFile.Parse(centralPath);
         var centralIndex = central.Params.ToDictionary(p => p.Guid);
 
