@@ -6,15 +6,14 @@ using System;
 namespace FopTools;
 
 /// <summary>
-/// FopTools — генерация и валидация фирменных ФОПов (общих параметров Revit).
+/// FopTools — валидация центрального ФОПа (общих параметров Revit).
 ///
 /// Запуск из корня репозитория:
-///   dotnet run --project FopTools -- build          — пересобрать производные ФОПы
-///   dotnet run --project FopTools -- check          — проверить все ФОПы в fops/
-///   dotnet run --project FopTools -- check &lt;файл&gt; — проверить один файл
+///   dotnet run --project FopTools -- check          — проверить центральный ФОП
+///   dotnet run --project FopTools -- check &lt;файл&gt; — проверить дополнительные файлы
 ///
 /// После публикации:
-///   FopTools build | FopTools check
+///   FopTools check
 /// </summary>
 public static class Program
 {
@@ -23,7 +22,7 @@ public static class Program
         Console.OutputEncoding = System.Text.Encoding.UTF8;
         if (args.Length == 0)
         {
-            Console.WriteLine("Использование: FopTools <build|check> [файлы...]");
+            Console.WriteLine("Использование: FopTools check [файлы...]");
             return 2;
         }
 
@@ -32,14 +31,13 @@ public static class Program
 
         return args[0].ToLowerInvariant() switch
         {
-            "build" => BuildCommand.Run(repoRoot),
             "check" => CheckCommand.Run(repoRoot, args.Skip(1).ToList()),
             _ => Unknown(args[0]),
         };
 
         static int Unknown(string cmd)
         {
-            Console.Error.WriteLine($"Неизвестная команда: {cmd} (ожидается build или check)");
+            Console.Error.WriteLine($"Неизвестная команда: {cmd} (ожидается check)");
             return 2;
         }
     }

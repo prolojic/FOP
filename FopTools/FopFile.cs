@@ -67,50 +67,6 @@ public sealed class FopFile
         }
         return fop;
     }
-
-    /// <summary>Собирает файл из набора параметров с перенумерацией групп под выборку.</summary>
-    public static string BuildText(FopFile central, IEnumerable<FopParam> selected)
-    {
-        var groupsInOrder = new List<int>();
-        var mapping = new Dictionary<int, int>();
-        foreach (var p in selected)
-        {
-            if (!mapping.ContainsKey(p.Group))
-            {
-                mapping[p.Group] = groupsInOrder.Count + 1;
-                groupsInOrder.Add(p.Group);
-            }
-        }
-
-        var sb = new StringBuilder();
-        sb.Append("# This is a Revit shared parameter file.\r\n");
-        sb.Append("# Do not edit manually.\r\n");
-        sb.Append("*META\tVERSION\tMINVERSION\r\n");
-        sb.Append($"META\t{central.MetaVersion}\t{central.MetaMinVersion}\r\n");
-        sb.Append("*GROUP\tID\tNAME\r\n");
-        foreach (var oldId in groupsInOrder)
-        {
-            var name = central.GroupsById.TryGetValue(oldId, out var g) ? g.Name : "";
-            sb.Append($"GROUP\t{mapping[oldId]}\t{name}\r\n");
-        }
-        sb.Append("*PARAM\tGUID\tNAME\tDATATYPE\tDATACATEGORY\tGROUP\tVISIBLE\tDESCRIPTION\tUSERMODIFIABLE\tHIDEWHENNOVALUE\r\n");
-        foreach (var p in selected)
-        {
-            sb.Append("PARAM\t").Append(p.Guid).Append('\t')
-              .Append(p.Name).Append('\t')
-              .Append(p.Datatype).Append('\t')
-              .Append(p.Datacategory).Append('\t')
-              .Append(mapping[p.Group]).Append('\t')
-              .Append(p.Visible).Append('\t')
-              .Append(p.Description).Append('\t')
-              .Append(p.Usermodifiable).Append('\t')
-              .Append(p.Hidewhennovalue).Append("\r\n");
-        }
-        return sb.ToString();
-    }
-
-    public static void Write(string path, string text) =>
-        File.WriteAllText(path, text, Encoding.Unicode);
 }
 
 public sealed class FopGroup

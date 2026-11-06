@@ -6,42 +6,36 @@ using System.Linq;
 namespace FopTools;
 
 /// <summary>
-/// Валидация ФОПов: формат, дубли GUID/имён, ссылки на группы,
-/// соответствие производных ФОПов центральному.
+/// Валидация ФОПа: формат, дубли GUID/имён, ссылки на группы,
+/// соответствие дополнительных файлов центральному ФОПу.
 /// Код выхода: 0 — ошибок нет, 1 — есть ошибки.
 /// </summary>
 public static class CheckCommand
 {
+    public const string CentralFileName = "FOP_SP_v2.txt";
+
     public static int Run(string repoRoot, IReadOnlyList<string> targets)
     {
-        var rulesPath = Path.Combine(repoRoot, "fop_rules.json");
-        var rules = File.Exists(rulesPath) ? FopRules.Load(rulesPath) : null;
-        var centralPath = Path.Combine(repoRoot, rules?.Central ?? "FOP_SP_v1.txt");
+        var centralPath = Path.Combine(repoRoot, CentralFileName);
         var central = FopFile.Parse(centralPath);
         var centralIndex = central.Params.ToDictionary(p => p.Guid);
 
-        var allOk = Validate(centralPath, central, centralIndex,
-                             strictDuplicates: true, out _);
+        var allOk = Validate(centralPath, central, centralIndex, strictDuplicates: true, out _);
 
-        var files = targets.Count > 0
-            ? targets.Select(t => Path.GetFullPath(Path.Combine(repoRoot, t))).ToList()
-            : Directory.GetFiles(Path.Combine(repoRoot, rules?.OutputDir ?? "fops"), "*.txt").ToList();
+        var files = targets
+            .Select(t => Path.GetFullPath(Path.Combine(repoRoot, t)))
+            .ToList();
 
         foreach (var file in files)
         {
             if (Path.GetFullPath(file) == Path.GetFullPath(centralPath))
                 continue;
-            var isStandalone = rules?.Standalone.Contains(Path.GetFileName(file)) == true;
             var fop = FopFile.Parse(file);
-            var index = isStandalone ? NoCentralCheck : centralIndex;
-            if (!Validate(file, fop, index, strictDuplicates: !isStandalone, out _))
+            if (!Validate(file, fop, centralIndex, strictDuplicates: true, out _))
                 allOk = false;
         }
         return allOk ? 0 : 1;
     }
-
-    private static readonly IReadOnlyDictionary<string, FopParam> NoCentralCheck =
-        new Dictionary<string, FopParam>();
 
     private static bool Validate(
         string path, FopFile fop, IReadOnlyDictionary<string, FopParam> centralIndex,
